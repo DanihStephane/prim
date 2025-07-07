@@ -42,11 +42,12 @@ const Footer: React.FC = () => {
                 placeholder={translate('footer.email.placeholder')}
                 className="flex-grow bg-transparent border-none py-3 px-16 text-white placeholder-gray-400 focus:outline-none form-input"
               />
-              <button 
+                            <button 
                 type="button"
                 onClick={openBooking}
-                className="btn bg-white text-black pr-4 hover-scale"
+                className="btn bg-white text-black px-8 py-3 min-w-[300px] hover-scale font-medium"
               >
+
                 {translate('footer.cta.button')}
                 <span className="arrow-icon bg-black text-white">
                   <ArrowRight size={14} />

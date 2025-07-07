@@ -19,7 +19,7 @@ const Hero: React.FC = () => {
         id="home" 
         className="hero relative min-h-screen bg-cover bg-center parallax"
         style={{ 
-          paddingTop: '120px',
+          paddingTop: '200px',
           backgroundImage: 'url(https://images.pexels.com/photos/936722/pexels-photo-936722.jpeg?auto=compress&cs=tinysrgb&w=1920)'
         }}
       >
@@ -29,11 +29,11 @@ const Hero: React.FC = () => {
             <div className="hero-left w-1/2">
               <div className="relative">
                 {/* Social Sidebar */}
-                <div className="social-sidebar absolute -left-20 top-12 bg-white p-4 rounded-3xl shadow-lg flex flex-col gap-5 scale-in visible">
-                  <a href="#" className="text-black text-xl hover-scale"><Linkedin size={20} /></a>
-                  <a href="#" className="text-black text-xl hover-scale"><Mail size={20} /></a>
-                  <a href="#" className="text-black text-xl hover-scale"><Facebook size={20} /></a>
-                  <a href="#" className="text-black text-xl hover-scale"><Instagram size={20} /></a>
+                <div className="social-sidebar scale-in visible">
+                  <a href="#" className="hover-scale"><Linkedin size={20} /></a>
+                  <a href="#" className="hover-scale"><Mail size={20} /></a>
+                  <a href="#" className="hover-scale"><Facebook size={20} /></a>
+                  <a href="#" className="hover-scale"><Instagram size={20} /></a>
                 </div>
                 
                 <h1 

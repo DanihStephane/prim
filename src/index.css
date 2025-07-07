@@ -295,6 +295,45 @@ header.scrolled {
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
+/* --- Social Sidebar Styles --- */
+.social-sidebar {
+    position: absolute;
+    left: -80px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--white);
+    padding: 16px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.social-sidebar:hover {
+    transform: translateY(-50%) translateX(5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.social-sidebar a {
+    color: var(--black);
+    font-size: 1.25rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-sidebar a:hover {
+    color: var(--teal);
+    background-color: rgba(0, 194, 169, 0.1);
+    transform: scale(1.1);
+}
+
 /* --- Card Animations --- */
 .feature-card, .balance-card, .question-box {
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -346,21 +385,6 @@ header.scrolled {
 .steps-timeline li:hover::before {
     transform: translateY(-50%) scale(1.1);
     box-shadow: 0 5px 15px rgba(0, 194, 169, 0.3);
-}
-
-/* --- Social Icons Animation --- */
-.social-sidebar a, .footer-socials a {
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.social-sidebar a:hover {
-    transform: translateY(-3px) scale(1.1);
-    color: var(--teal);
-}
-
-.footer-socials a:hover {
-    transform: translateY(-3px) scale(1.1);
-    color: var(--teal);
 }
 
 /* --- Modal Animations --- */
@@ -552,6 +576,23 @@ header.scrolled {
         bottom: -10px;
     }
 
+    /* Social Sidebar Mobile */
+    .social-sidebar {
+        position: static;
+        transform: none;
+        flex-direction: row;
+        justify-content: center;
+        margin: 20px 0;
+        left: auto;
+        top: auto;
+        padding: 12px 20px;
+        gap: 15px;
+    }
+
+    .social-sidebar:hover {
+        transform: translateY(-2px);
+    }
+
     .subscribe-form {
         flex-direction: column;
         gap: 15px;
@@ -592,3 +633,4 @@ header.scrolled {
         scroll-behavior: auto !important;
     }
 }
+
