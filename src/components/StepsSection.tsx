@@ -1,81 +1,74 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import BookingModal from './BookingModal';
+import { useBooking } from '../hooks/useBooking';
 
 const StepsSection: React.FC = () => {
   const { translate } = useTranslation();
+  const { isBookingOpen, openBooking, closeBooking } = useBooking();
+  const [titleRef, titleVisible] = useScrollAnimation(0.2);
+  const [timelineRef, timelineVisible] = useScrollAnimation(0.3);
+  const [boxRef, boxVisible] = useScrollAnimation(0.3);
 
   return (
-    <section id="pricing" className="py-16 lg:py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 lg:px-6">
-        <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-            {translate('steps.title')}
-          </h2>
-          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            {translate('steps.subtitle')}
-          </p>
+    <>
+      <section id="pricing" className="container">
+        <div ref={titleRef} className={`section-header-enhanced fade-in ${titleVisible ? 'visible' : ''}`}>
+          <h2>{translate('steps.title')}</h2>
+          <p>{translate('steps.subtitle')}</p>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
-          {/* Step 1 */}
-          <div className="relative">
-            <div className="flex items-center mb-4">
-              <div className="w-3 h-3 bg-teal-400 rounded-full mr-3"></div>
-              <h3 className="text-base lg:text-lg font-semibold text-gray-900">
-                {translate('steps.step1.title')}
-              </h3>
-            </div>
-            <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
-              {translate('steps.step1.desc')}
-            </p>
-          </div>
-
-          {/* Step 2 */}
-          <div className="relative">
-            <div className="flex items-center mb-4">
-              <div className="w-3 h-3 bg-teal-400 rounded-full mr-3"></div>
-              <h3 className="text-base lg:text-lg font-semibold text-gray-900">
-                {translate('steps.step2.title')}
-              </h3>
-            </div>
-            <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
-              {translate('steps.step2.desc')}
-            </p>
-          </div>
-
-          {/* Step 3 */}
-          <div className="relative">
-            <div className="flex items-center mb-4">
-              <div className="w-3 h-3 bg-teal-400 rounded-full mr-3"></div>
-              <h3 className="text-base lg:text-lg font-semibold text-gray-900">
-                {translate('steps.step3.title')}
-              </h3>
-            </div>
-            <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
-              {translate('steps.step3.desc')}
-            </p>
-          </div>
-        </div>
-
-        {/* Large CTA Card */}
-        <div className="bg-black text-white p-8 lg:p-12 rounded-2xl lg:rounded-3xl relative overflow-hidden">
-          <div className="relative z-10 max-w-xl">
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 leading-tight">
-              {translate('steps.cta.title')}
-            </h3>
-            <button className="inline-flex items-center px-6 py-3 bg-teal-400 text-white font-semibold rounded-full hover:bg-teal-500 transition-colors duration-200">
+        
+        <div className="steps-content flex items-center gap-12">
+          <ul 
+            ref={timelineRef}
+            className={`steps-timeline list-none relative flex-shrink-0 w-2/5 fade-in-left ${timelineVisible ? 'visible' : ''}`}
+          >
+            <div className="absolute top-4 bottom-4 left-4 w-1 bg-teal-500 rounded-full"></div>
+            
+            <li className="py-5 pl-16 relative hover-lift" data-step="01">
+              <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-teal-500 text-white flex justify-center items-center font-bold hover-scale">
+                01
+              </div>
+              <span className="text-xl font-semibold">{translate('steps.step1.title')}</span>
+            </li>
+            
+            <li className="py-5 pl-16 relative hover-lift" data-step="02">
+              <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-teal-500 text-white flex justify-center items-center font-bold hover-scale">
+                02
+              </div>
+              <span className="text-xl font-semibold">{translate('steps.step2.title')}</span>
+            </li>
+            
+            <li className="py-5 pl-16 relative hover-lift" data-step="03">
+              <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-teal-500 text-white flex justify-center items-center font-bold hover-scale">
+                03
+              </div>
+              <span className="text-xl font-semibold">{translate('steps.step3.title')}</span>
+            </li>
+          </ul>
+          
+          <div 
+            ref={boxRef}
+            className={`step-description-box bg-black text-white p-12 rounded-3xl flex-grow border-r-8 border-teal-500 hover-lift fade-in-right ${boxVisible ? 'visible' : ''}`}
+          >
+            <h3 className="text-4xl mb-8 leading-tight">{translate('steps.cta.title')}</h3>
+            <button 
+              onClick={openBooking}
+              className="btn btn-teal hover-scale"
+            >
               {translate('hero.cta')}
-              <ArrowRight className="ml-2" size={18} />
+              <span className="arrow-icon">
+                <ArrowRight size={14} />
+              </span>
             </button>
           </div>
-          
-          {/* Decorative elements */}
-          <div className="absolute top-6 right-6 w-16 h-16 lg:w-20 lg:h-20 bg-teal-400/20 rounded-full"></div>
-          <div className="absolute bottom-6 right-12 w-10 h-10 lg:w-12 lg:h-12 bg-teal-400/10 rounded-full"></div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <BookingModal isOpen={isBookingOpen} onClose={closeBooking} />
+    </>
   );
 };
 

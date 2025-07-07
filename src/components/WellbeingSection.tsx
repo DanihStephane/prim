@@ -1,117 +1,72 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
+import { useScrollAnimation, useStaggeredAnimation } from '../hooks/useScrollAnimation';
+import BookingModal from './BookingModal';
+import { useBooking } from '../hooks/useBooking';
 
 const WellbeingSection: React.FC = () => {
   const { translate } = useTranslation();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    business: '',
-    challenge: '',
-    goal: ''
-  });
+  const { isBookingOpen, openBooking, closeBooking } = useBooking();
+  const [titleRef, titleVisible] = useScrollAnimation(0.2);
+  const [questionsRef, questionsVisible] = useStaggeredAnimation(8, 100);
+  const [buttonRef, buttonVisible] = useScrollAnimation(0.3);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const questions = [
+    'wellbeing.question1',
+    'wellbeing.question2',
+    'wellbeing.question3',
+    'wellbeing.question4',
+    'wellbeing.question5',
+    'wellbeing.question6',
+    'wellbeing.question7',
+    'wellbeing.question8'
+  ];
 
   return (
-    <section id="contact" className="py-16 lg:py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 lg:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Left Content */}
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-teal-400 leading-tight">
-                {translate('wellbeing.title')}
-              </h2>
-              <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                {translate('wellbeing.subtitle')}
-              </p>
+    <>
+      <section id="contact" className="sacrifice-section bg-white">
+        <div className="container">
+          <div className="sacrifice-content flex gap-15 items-start">
+            <div 
+              ref={titleRef}
+              className={`sacrifice-left flex-shrink-0 w-2/5 fade-in-left ${titleVisible ? 'visible' : ''}`}
+            >
+              <h2 className="text-6xl text-teal-500 leading-tight font-bold">{translate('wellbeing.title')}</h2>
+              <p className="mt-5 text-xl font-semibold">{translate('wellbeing.subtitle')}</p>
+            </div>
+            
+            <div ref={questionsRef} className="sacrifice-right flex-grow grid grid-cols-2 gap-5">
+              {questions.map((question, index) => (
+                <div 
+                  key={index} 
+                  className={`question-box border-2 border-black p-6 rounded-2xl text-lg font-medium hover-lift stagger-item ${questionsVisible[index] ? 'visible' : ''}`}
+                >
+                  {translate(question)}
+                </div>
+              ))}
+              
+              <div 
+                ref={buttonRef}
+                className={`btn-wrapper col-start-2 text-right mt-5 fade-in ${buttonVisible ? 'visible' : ''}`}
+              >
+                <button 
+                  onClick={openBooking}
+                  className="btn btn-teal hover-lift"
+                >
+                  {translate('hero.cta')}
+                  <span className="arrow-icon">
+                    <ArrowRight size={14} />
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
-
-          {/* Right Content - Form */}
-          <div className="space-y-4">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-400 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500 text-sm"
-                  placeholder={translate('wellbeing.form.name')}
-                  required
-                />
-              </div>
-
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-400 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500 text-sm"
-                  placeholder={translate('wellbeing.form.email')}
-                  required
-                />
-              </div>
-
-              <div>
-                <input
-                  type="text"
-                  name="business"
-                  value={formData.business}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-400 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500 text-sm"
-                  placeholder={translate('wellbeing.form.business')}
-                  required
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  name="challenge"
-                  value={formData.challenge}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-400 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500 text-sm"
-                  placeholder={translate('wellbeing.form.challenge')}
-                  required
-                />
-                <input
-                  type="text"
-                  name="goal"
-                  value={formData.goal}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-400 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500 text-sm"
-                  placeholder={translate('wellbeing.form.goal')}
-                  required
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-teal-400 text-white py-3 px-6 rounded-full font-semibold hover:bg-teal-500 transition-colors duration-200 flex items-center justify-center space-x-2 text-sm"
-              >
-                <span>{translate('wellbeing.form.submit')}</span>
-                <ArrowRight size={18} />
-              </button>
-            </form>
-          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <BookingModal isOpen={isBookingOpen} onClose={closeBooking} />
+    </>
   );
 };
 

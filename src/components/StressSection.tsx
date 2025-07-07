@@ -1,69 +1,80 @@
 import React from 'react';
-import { CheckCircle } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
+import { useScrollAnimation, useStaggeredAnimation } from '../hooks/useScrollAnimation';
+import BookingModal from './BookingModal';
+import { useBooking } from '../hooks/useBooking';
 
 const StressSection: React.FC = () => {
   const { translate } = useTranslation();
+  const { isBookingOpen, openBooking, closeBooking } = useBooking();
+  const [headerRef, headerVisible] = useScrollAnimation(0.2);
+  const [imageRef, imageVisible] = useScrollAnimation(0.3);
+  const [pointsRef, pointsVisible] = useStaggeredAnimation(7, 150);
 
-  const benefits = [
+  const stressPoints = [
     'stress.point1',
-    'stress.point2',
+    'stress.point2', 
     'stress.point3',
     'stress.point4',
     'stress.point5',
-    'stress.point6'
+    'stress.point6',
+    'stress.point7'
   ];
 
   return (
-    <section id="about" className="py-16 lg:py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 lg:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Content */}
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                  {translate('stress.title')}
-                </h2>
-                <span className="inline-flex items-center px-3 py-1 bg-teal-400 text-white rounded-full text-sm font-medium whitespace-nowrap">
-                  Solution
-                </span>
-              </div>
-              <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                {translate('stress.subtitle')}
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-start space-x-3">
-                  <CheckCircle className="text-teal-400 mt-0.5 flex-shrink-0" size={18} />
-                  <span className="text-gray-700 leading-relaxed text-sm">
-                    {translate(benefit)}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Content */}
-          <div className="relative">
-            <div className="bg-teal-100 rounded-2xl p-6 relative overflow-hidden">
-              <img
-                src="https://images.pexels.com/photos/1043473/pexels-photo-1043473.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Stressed Business Person"
-                className="w-full h-80 lg:h-96 object-cover rounded-xl"
-              />
-              
-              {/* Decorative circles */}
-              <div className="absolute top-4 left-4 w-6 h-6 bg-white/30 rounded-full"></div>
-              <div className="absolute bottom-4 right-4 w-8 h-8 bg-white/20 rounded-full"></div>
-              <div className="absolute top-1/2 left-4 w-4 h-4 bg-teal-300/50 rounded-full"></div>
-            </div>
-          </div>
+    <>
+      <section id="about" className="stress-section container" style={{ paddingTop: '50px' }}>
+        <div 
+          ref={headerRef}
+          className={`section-header flex justify-between items-center mb-12 fade-in ${headerVisible ? 'visible' : ''}`}
+        >
+          <h2 className="text-5xl font-bold max-w-lg">{translate('stress.title')}</h2>
+          <button 
+            onClick={openBooking}
+            className="btn btn-teal hover-lift"
+          >
+            {translate('hero.cta')}
+            <span className="arrow-icon">
+              <ArrowRight size={14} />
+            </span>
+          </button>
         </div>
-      </div>
-    </section>
+        
+        <p className={`text-xl text-gray-600 mb-8 fade-in ${headerVisible ? 'visible' : ''}`} style={{ transitionDelay: '200ms' }}>
+          {translate('stress.subtitle')}
+        </p>
+        
+        <div className="stress-content flex gap-12 items-center">
+          <div 
+            ref={imageRef}
+            className={`stress-image flex-shrink-0 w-2/5 image-container fade-in-left ${imageVisible ? 'visible' : ''}`}
+          >
+            <img 
+              src="https://images.pexels.com/photos/1043473/pexels-photo-1043473.jpeg?auto=compress&cs=tinysrgb&w=800" 
+              alt="Stressed business owner" 
+              className="w-full rounded-3xl"
+            />
+          </div>
+          
+          <ul ref={pointsRef} className="stress-points flex-grow list-none">
+            {stressPoints.map((point, index) => (
+              <li 
+                key={index} 
+                className={`py-5 border-b border-gray-300 flex items-center text-lg hover-lift stagger-item ${pointsVisible[index] ? 'visible' : ''}`}
+              >
+                <span className="arrow-icon flex justify-center items-center min-w-8 h-8 border-2 border-black text-black rounded-full mr-5 text-sm hover-scale">
+                  <ArrowRight size={14} />
+                </span>
+                {translate(point)}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <BookingModal isOpen={isBookingOpen} onClose={closeBooking} />
+    </>
   );
 };
 

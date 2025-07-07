@@ -1,95 +1,128 @@
 import React from 'react';
-import { ArrowRight, Star, Play } from 'lucide-react';
+import { ArrowRight, Heart, Linkedin, Mail, Facebook, Instagram } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import BookingModal from './BookingModal';
+import { useBooking } from '../hooks/useBooking';
 
 const Hero: React.FC = () => {
   const { translate } = useTranslation();
+  const { isBookingOpen, openBooking, closeBooking } = useBooking();
+  const [titleRef, titleVisible] = useScrollAnimation(0.2);
+  const [statsRef, statsVisible] = useScrollAnimation(0.3);
+  const [bubbleRef, bubbleVisible] = useScrollAnimation(0.3);
+  const [cardsRef, cardsVisible] = useScrollAnimation(0.3);
 
   return (
-    <section id="home" className="relative bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 lg:px-6 py-12 lg:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Left Content */}
-          <div className="space-y-6 text-white order-2 lg:order-1">
-            {/* Navigation dots */}
-            <div className="flex space-x-2">
-              <div className="w-2 h-2 bg-white rounded-full"></div>
-              <div className="w-2 h-2 bg-white/40 rounded-full"></div>
-              <div className="w-2 h-2 bg-white/40 rounded-full"></div>
-              <div className="w-2 h-2 bg-white/40 rounded-full"></div>
-            </div>
-
-            <div className="space-y-4">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-                {translate('hero.title')}
-              </h1>
-              <p className="text-base md:text-lg leading-relaxed opacity-90 max-w-lg">
-                {translate('hero.subtitle')}
-              </p>
-            </div>
-
-            <button className="inline-flex items-center px-6 py-3 bg-teal-400 text-white font-semibold rounded-full hover:bg-teal-500 transition-colors duration-200 shadow-lg">
-              {translate('hero.cta')}
-              <ArrowRight className="ml-2" size={18} />
-            </button>
-          </div>
-
-          {/* Right Content */}
-          <div className="relative order-1 lg:order-2">
-            {/* Main Image Container with video overlay */}
-            <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
+    <>
+      <section 
+        id="home" 
+        className="hero relative min-h-screen bg-cover bg-center parallax"
+        style={{ 
+          paddingTop: '120px',
+          backgroundImage: 'url(https://images.pexels.com/photos/936722/pexels-photo-936722.jpeg?auto=compress&cs=tinysrgb&w=1920)'
+        }}
+      >
+        <div className="hero-content container relative z-10">
+          <div className="hero-main flex items-end gap-5">
+            {/* Left Side */}
+            <div className="hero-left w-1/2">
               <div className="relative">
-                <img
-                  src="https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Business Success"
-                  className="w-full h-64 lg:h-80 object-cover rounded-xl"
-                />
+                {/* Social Sidebar */}
+                <div className="social-sidebar absolute -left-20 top-12 bg-white p-4 rounded-3xl shadow-lg flex flex-col gap-5 scale-in visible">
+                  <a href="#" className="text-black text-xl hover-scale"><Linkedin size={20} /></a>
+                  <a href="#" className="text-black text-xl hover-scale"><Mail size={20} /></a>
+                  <a href="#" className="text-black text-xl hover-scale"><Facebook size={20} /></a>
+                  <a href="#" className="text-black text-xl hover-scale"><Instagram size={20} /></a>
+                </div>
                 
-                {/* Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <button className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:bg-white transition-colors duration-200">
-                    <Play size={20} className="text-blue-500 ml-0.5" fill="currentColor" />
+                <h1 
+                  ref={titleRef}
+                  className={`hero-title text-6xl leading-tight mb-10 fade-in-left ${titleVisible ? 'visible' : ''}`}
+                >
+                  {translate('hero.title')}
+                </h1>
+              </div>
+              
+              {/* Stats Card */}
+              <div 
+                ref={statsRef}
+                className={`stats-card bg-teal-500 text-white p-10 rounded-3xl w-full hover-lift fade-in-left ${statsVisible ? 'visible' : ''}`}
+                style={{ transitionDelay: '300ms' }}
+              >
+                <div className="flex items-baseline">
+                  <span className="text-8xl font-bold leading-none">216</span>
+                  <span className="text-2xl font-semibold ml-3">{translate('hero.stats.owners')}</span>
+                </div>
+                <p className="mt-5 text-lg">{translate('hero.stats.description')}</p>
+              </div>
+            </div>
+
+            {/* Right Side */}
+            <div className="hero-right w-1/2 flex flex-col gap-5 items-start pb-12 pl-5">
+              {/* Speech Bubble */}
+              <div 
+                ref={bubbleRef}
+                className={`speech-bubble bg-white bg-opacity-20 backdrop-blur-lg border border-white border-opacity-30 p-10 rounded-3xl text-white w-full max-w-md hover-lift fade-in-right ${bubbleVisible ? 'visible' : ''}`}
+              >
+                <h2 className="text-2xl font-semibold mb-8">{translate('hero.question')}</h2>
+                <button 
+                  onClick={openBooking}
+                  className="btn btn-teal hover-scale"
+                >
+                  {translate('hero.cta')}
+                  <span className="arrow-icon">
+                    <ArrowRight size={14} />
+                  </span>
+                </button>
+              </div>
+
+              {/* Testimonial Cards */}
+              <div 
+                ref={cardsRef}
+                className={`hero-testimonial-cards flex gap-5 w-full fade-in-right ${cardsVisible ? 'visible' : ''}`}
+                style={{ transitionDelay: '200ms' }}
+              >
+                {/* Success Rate Card */}
+                <div className="hero-card bg-black text-white p-8 rounded-3xl flex-1 text-center hover-lift">
+                  <span className="icon w-15 h-15 bg-white text-black rounded-full inline-flex justify-center items-center mb-4 hover-scale">
+                    <Heart size={24} />
+                  </span>
+                  <span className="block text-5xl font-bold leading-none">100%</span>
+                  <h3 className="mt-3 text-base font-medium">{translate('hero.satisfaction')}</h3>
+                </div>
+
+                {/* Testimonial Card */}
+                <div className="hero-card testimonial bg-black text-white p-8 rounded-3xl flex-1 hover-lift">
+                  <div className="testimonial-header flex items-center gap-4 mb-4">
+                    <div className="image-container w-12 h-12 rounded-full overflow-hidden">
+                      <img 
+                        src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100" 
+                        alt="Alex" 
+                        className="w-12 h-12 rounded-full object-cover"
+                      />
+                    </div>
+                    <p className="font-semibold">{translate('hero.testimonial.author')}</p>
+                  </div>
+                  <p className="mb-4 text-sm leading-relaxed">{translate('hero.testimonial.text')}</p>
+                  <button 
+                    onClick={openBooking}
+                    className="btn btn-teal text-sm hover-scale"
+                  >
+                    {translate('hero.cta')}
+                    <span className="arrow-icon">
+                      <ArrowRight size={12} />
+                    </span>
                   </button>
                 </div>
-
-                {/* Video Info Badge */}
-                <div className="absolute top-3 right-3 bg-white/90 px-2 py-1 rounded-full">
-                  <span className="text-xs text-gray-700 font-medium">
-                    {translate('hero.video.info')}
-                  </span>
-                </div>
               </div>
-            </div>
-
-            {/* Stats Cards */}
-            <div className="absolute -bottom-4 -left-4 bg-teal-400 text-white p-4 rounded-xl shadow-xl">
-              <div className="text-2xl font-bold">216</div>
-              <div className="text-xs opacity-90">{translate('hero.stats.owners')}</div>
-            </div>
-
-            <div className="absolute -top-4 -right-4 bg-black text-white p-4 rounded-xl shadow-xl">
-              <div className="text-2xl font-bold">100%</div>
-              <div className="text-xs text-gray-300">{translate('hero.stats.success')}</div>
-            </div>
-
-            {/* Testimonial Card */}
-            <div className="absolute bottom-3 right-3 bg-white p-3 rounded-xl shadow-lg max-w-48">
-              <div className="flex items-center space-x-1 mb-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={12} className="text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-xs text-gray-700 mb-1 leading-tight">
-                {translate('hero.testimonial.text')}
-              </p>
-              <p className="text-xs text-gray-500 font-medium">
-                {translate('hero.testimonial.author')}
-              </p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <BookingModal isOpen={isBookingOpen} onClose={closeBooking} />
+    </>
   );
 };
 
