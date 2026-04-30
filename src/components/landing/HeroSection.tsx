@@ -98,12 +98,12 @@ export default function HeroSection() {
 
       {/* Grille futuriste */}
       <div className="absolute inset-0 z-0 opacity-[0.15] bg-grid parallax-bg"
-        style={{ 
-          backgroundImage: `radial-gradient(circle, #fff 1px, transparent 1px)`, 
+        style={{
+          backgroundImage: `radial-gradient(circle, #fff 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
           WebkitMaskImage: 'radial-gradient(circle at center, black, transparent 80%)',
           maskImage: 'radial-gradient(circle at center, black, transparent 80%)'
-        }} 
+        }}
       />
 
       {/* Halos lumineux dynamiques */}
@@ -141,7 +141,7 @@ export default function HeroSection() {
 
           <div className="flex flex-wrap gap-4 hero-btns">
             <Button size="lg" className="h-16 px-10 text-base font-bold rounded-xl bg-accent hover:bg-accent/90 shadow-[0_0_20px_rgba(var(--accent),0.3)] transition-all" asChild>
-              <Link href="/contact">
+              <Link href="https://calendly.primices.com/fr" target="_blank">
                 {t('cta')}
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>

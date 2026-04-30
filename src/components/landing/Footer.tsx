@@ -107,7 +107,7 @@ export default function Footer() {
               welcome-home@primices-international.com
             </a>
             <Button asChild className="w-full bg-accent hover:bg-accent/90 text-white font-bold h-14 rounded-full">
-              <Link href="/contact">{tCTA('consultation').toUpperCase()}</Link>
+              <Link href="https://calendly.primices.com/fr" target="_blank">{tCTA('consultation').toUpperCase()}</Link>
             </Button>
           </div>
         </div>
