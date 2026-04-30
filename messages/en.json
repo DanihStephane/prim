@@ -1,0 +1,173 @@
+{
+  "Navbar": {
+    "vision": "Vision",
+    "ecosystem": "Ecosystem",
+    "journey": "Journey",
+    "contact": "Contact Us",
+    "title": "PRIMICES INTERNATIONAL"
+  },
+  "header": {
+    "languages": {
+      "en": "English",
+      "en_short": "EN",
+      "fr": "Français",
+      "fr_short": "FR"
+    }
+  },
+  "Hero": {
+    "tagline": "The Future of Leadership",
+    "line1": "We Build",
+    "line2": "Leaders.",
+    "line3": "Amplifying",
+    "line4": "Impact.",
+    "description": "Take control of your journey in an ecosystem designed for sustainable performance and technological impact.",
+    "cta": "Start Experience",
+    "ecosystems_count": "06 Ecosystems",
+    "impact_label": "IMPACT+",
+    "scroll": "Scroll"
+  },
+  "Positioning": {
+    "label": "Positioning",
+    "title": "A Strategic Partner for Leaders of Today and Tomorrow",
+    "p1": "In a world where everything accelerates, performance is no longer enough.",
+    "p2": "It takes vision, structure, and an environment capable of sustaining long-term growth.",
+    "p3": "Primices International supports entrepreneurs, executives, and high-potential talents to:",
+    "benefits": [
+      "Comprehensive support to implement effective changes",
+      "Lifetime access to tailored coaching programs",
+      "Personalized strategies that align your vision with reality",
+      "A balanced life focused on innovation and profitability"
+    ]
+  },
+  "Promise": {
+    "bg_label": "PROMISE",
+    "line1": "You move fast.",
+    "line2": "We help you go far.",
+    "quote": "We create a framework where ambition and balance coexist. A space where your projects, your network, and your personal evolution are aligned."
+  },
+  "Ecosystems": {
+    "label": "An Interconnected System",
+    "title": "Our 6 Ecosystems",
+    "description": "Each ecosystem addresses a key growth lever. Together, they create a unique and sustainable competitive advantage.",
+    "learn_more": "Learn more",
+    "items": {
+      "mice": {
+        "title": "PRIMICES (MICE)",
+        "subtitle": "Business Experiences & Strategic Connections",
+        "description": "Conferences, trade shows, business meetings, and immersive trips. We create environments where important decisions are made."
+      },
+      "fair": {
+        "title": "FAIR-BRAND",
+        "subtitle": "Revealing and Propelling Talent",
+        "description": "We support high-potential young talents in their career development through a network and concrete tools."
+      },
+      "ingredients": {
+        "title": "INGREDIENTS",
+        "subtitle": "International Trading & Sustainable Ecosystems",
+        "description": "We connect producers, suppliers, and investors around organic products to build high-performing value chains."
+      },
+      "investment": {
+        "title": "INVESTMENTS",
+        "subtitle": "From Vision to Structured Project",
+        "description": "Support for the development of investment projects: structuring, strategy, financial connection."
+      },
+      "institute": {
+        "title": "INSTITUTE",
+        "subtitle": "Smart Education & Sustainable Impact",
+        "description": "Creation of EdTech platforms to prepare for tomorrow's challenges through innovative and interactive educational content."
+      },
+      "intelligence": {
+        "title": "INTELLIGENCE",
+        "subtitle": "The Digital Engine of Your Performance",
+        "description": "Automation, data, bespoke tools... all our solutions are amplified by intelligent digital systems."
+      }
+    }
+  },
+  "Differentiation": {
+    "label": "Differentiation",
+    "title": "Why Primices is Different",
+    "items": {
+      "ecosystem": {
+        "title": "Ecosystem Approach",
+        "description": "Everything is connected. We don't work in silos, but in synergy."
+      },
+      "vision": {
+        "title": "Global Vision",
+        "description": "We align business, people, and technology for sustainable performance."
+      },
+      "access": {
+        "title": "Strategic Access",
+        "description": "Open doors to exclusive opportunity networks and investors."
+      },
+      "execution": {
+        "title": "Concrete Execution",
+        "description": "Beyond consulting, we build and deploy your solutions."
+      }
+    }
+  },
+  "Journey": {
+    "label": "Experience / Journey",
+    "title": "A Structured Support, Designed to Perform",
+    "step_label": "Step",
+    "items": {
+      "step1": {
+        "title": "Analysis & Positioning",
+        "description": "Understanding your challenges, goals, and potential to define the best trajectory."
+      },
+      "step2": {
+        "title": "Personalized Strategy",
+        "description": "Activating the right ecosystems according to your specific growth and impact needs."
+      },
+      "step3": {
+        "title": "Deployment & Connection",
+        "description": "Connection with our network, access to tools, and participation in strategic events."
+      },
+      "step4": {
+        "title": "Continuous Optimization",
+        "description": "Constant improvement of your performance via our smart technological solutions."
+      }
+    }
+  },
+  "Vision": {
+    "label": "Our Vision",
+    "title": "Creating Leaders, Connecting Opportunities, Building the Future",
+    "description": "We believe in a world where economic growth aligns with human development and technological innovation."
+  },
+  "CTA": {
+    "title": "Ready to move to the next level?",
+    "description": "Access an ecosystem designed to accelerate your growth, expand your network, and structure your long-term success.",
+    "join": "Join Primices",
+    "consultation": "Request a consultation"
+  },
+  "Footer": {
+    "description": "A global strategic holding dedicated to excellence, innovation, and sustainable impact through interconnected ecosystems.",
+    "ecosystems": "Ecosystems",
+    "corporate": "Corporate",
+    "inquiries": "Inquiries",
+    "inquiries_p": "Contact our headquarters for any partnership or investment request.",
+    "copyright": "© 2024 Primices International. Excellence is our standard."
+  },
+  "Contact": {
+    "label": "Contact Us",
+    "line1": "Collaborate on",
+    "line2": "your next",
+    "impact": "impact",
+    "description": "Whether you are an executive looking to structure growth or a talent ready to take off, our ecosystem is ready to welcome you.",
+    "email_label": "Email",
+    "phone_label": "Phone",
+    "office_label": "Office",
+    "follow": "Follow our ecosystem",
+    "form": {
+      "name_label": "Full Name",
+      "email_label": "Email",
+      "subject_label": "Subject of your inquiry",
+      "subject_option1": "Join an ecosystem",
+      "subject_option2": "Coaching & Leadership",
+      "subject_option3": "Strategic Investment",
+      "subject_option4": "Other request",
+      "message_label": "Message",
+      "message_placeholder": "How can we support you?",
+      "submit": "Send Message"
+    }
+  }
+}
