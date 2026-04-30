@@ -145,7 +145,8 @@
     "corporate": "Corporate",
     "inquiries": "Inquiries",
     "inquiries_p": "Contactez notre siège pour toute demande de partenariat ou d'investissement.",
-    "copyright": "© 2024 Primices International. Excellence is our standard."
+    "copyright": "© 2026 Primices International.",
+    "Developer": "Développé par <a href='https://primices-intelligence.com' target='_blank'><i>Primices Intelligence</i></a>"
   },
   "Contact": {
     "label": "Contactez-nous",
@@ -160,6 +161,7 @@
     "form": {
       "name_label": "Nom complet",
       "email_label": "Email",
+      "default": "Selectionner",
       "subject_label": "Sujet de votre démarche",
       "subject_option1": "Rejoindre un écosystème",
       "subject_option2": "Coaching & Leadership",

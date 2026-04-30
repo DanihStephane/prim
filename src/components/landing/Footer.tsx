@@ -100,8 +100,11 @@ export default function Footer() {
           <div className="space-y-8">
             <h5 className="text-xs font-black tracking-[0.2em] uppercase text-accent mb-8">{t('inquiries')}</h5>
             <p className="text-white/40 text-sm font-medium">{t('inquiries_p')}</p>
-            <a className="text-white font-black text-2xl block hover:text-accent transition-colors tracking-tighter" href="mailto:rodolpho.r@primices-international.com">
+            <a className="text-white font-semibold text-md block hover:text-accent transition-colors tracking-tighter whitespace-nowrap" href="mailto:rodolpho.r@primices-international.com">
               rodolpho.r@primices-international.com
+            </a>
+            <a className="text-white font-semibold text-md block hover:text-accent transition-colors tracking-tighter whitespace-nowrap" href="mailto:welcome-home@primices-international.com">
+              welcome-home@primices-international.com
             </a>
             <Button asChild className="w-full bg-accent hover:bg-accent/90 text-white font-bold h-14 rounded-full">
               <Link href="/contact">{tCTA('consultation').toUpperCase()}</Link>
@@ -111,6 +114,7 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-white/20 text-xs font-bold uppercase tracking-widest">{t('copyright')}</p>
+          <p className="text-white/20 text-xs font-bold uppercase tracking-widest [&_a]:text-accent [&_a]:transition-colors hover:[&_a]:underline" dangerouslySetInnerHTML={{ __html: t.raw('Developer') }} />
           <div className="flex gap-8">
             {["Privacy", "Terms", "Legal"].map((link) => (
               <a key={link} className="text-white/20 text-xs font-bold uppercase tracking-widest hover:text-white transition-colors" href="#">{link}</a>
