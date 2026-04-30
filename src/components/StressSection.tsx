@@ -24,46 +24,46 @@ const StressSection: React.FC = () => {
 
   return (
     <>
-      <section id="about" className="stress-section container" style={{ paddingTop: '50px' }}>
+      <section id="about" className="max-w-[1200px] mx-auto px-5" style={{ paddingTop: '50px' }}>
         <div 
           ref={headerRef}
-          className={`section-header flex justify-between items-center mb-12 fade-in ${headerVisible ? 'visible' : ''}`}
+          className={`flex flex-col md:flex-row justify-between items-center mb-12 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
-          <h2 className="text-5xl font-bold max-w-lg">{translate('stress.title')}</h2>
+          <h2 className="text-5xl font-bold max-w-lg mb-6 md:mb-0">{translate('stress.title')}</h2>
           <button 
             onClick={openBooking}
-            className="btn btn-teal hover-lift"
+            className="group inline-flex items-center px-8 py-3 rounded-full font-bold relative overflow-hidden transition-all bg-[#00c2a9] text-white hover:bg-[#00a693] hover:-translate-y-0.5 hover:shadow-lg"
           >
             {translate('hero.cta')}
-            <span className="arrow-icon">
+            <span className="w-7 h-7 bg-white text-[#00c2a9] rounded-full flex items-center justify-center ml-4 transition-all group-hover:translate-x-1">
               <ArrowRight size={14} />
             </span>
           </button>
         </div>
         
-        <p className={`text-xl text-gray-600 mb-8 fade-in ${headerVisible ? 'visible' : ''}`} style={{ transitionDelay: '200ms' }}>
+        <p className={`text-xl text-gray-600 mb-8 transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {translate('stress.subtitle')}
         </p>
         
-        <div className="stress-content flex gap-12 items-center">
+        <div className="flex flex-col lg:flex-row gap-12 items-center">
           <div 
             ref={imageRef}
-            className={`stress-image flex-shrink-0 w-2/5 image-container fade-in-left ${imageVisible ? 'visible' : ''}`}
+            className={`flex-shrink-0 w-full lg:w-2/5 overflow-hidden rounded-[35px] transition-all duration-700 ${imageVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}
           >
             <img 
               src="https://images.pexels.com/photos/1043473/pexels-photo-1043473.jpeg?auto=compress&cs=tinysrgb&w=800" 
               alt="Stressed business owner" 
-              className="w-full rounded-3xl"
+              className="w-full rounded-[35px] transition-all hover:scale-105 duration-500"
             />
           </div>
           
-          <ul ref={pointsRef} className="stress-points flex-grow list-none">
+          <ul ref={pointsRef} className="flex-grow list-none w-full">
             {stressPoints.map((point, index) => (
               <li 
                 key={index} 
-                className={`py-5 border-b border-gray-300 flex items-center text-lg hover-lift stagger-item ${pointsVisible[index] ? 'visible' : ''}`}
+                className={`py-5 border-b border-gray-300 flex items-center text-lg transition-all duration-500 hover:translate-x-2 ${pointsVisible[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
               >
-                <span className="arrow-icon flex justify-center items-center min-w-8 h-8 border-2 border-black text-black rounded-full mr-5 text-sm hover-scale">
+                <span className="flex justify-center items-center min-w-[32px] h-8 border-2 border-black text-black rounded-full mr-5 text-sm transition-all hover:scale-110">
                   <ArrowRight size={14} />
                 </span>
                 {translate(point)}

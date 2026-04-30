@@ -13,32 +13,32 @@ const CTASection: React.FC = () => {
 
   return (
     <>
-      <section id="blog" className="overwhelmed-section">
-        <div className="container flex gap-5 items-center">
+      <section id="blog" className="py-24">
+        <div className="max-w-[1200px] mx-auto px-5 flex flex-col lg:flex-row gap-12 items-center">
           <div 
             ref={imageRef}
-            className={`overwhelmed-image flex-shrink-0 w-2/5 image-container fade-in-left ${imageVisible ? 'visible' : ''}`}
+            className={`flex-shrink-0 w-full lg:w-2/5 overflow-hidden rounded-[35px] transition-all duration-700 ${imageVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}
           >
             <img 
               src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800" 
               alt="Overwhelmed business owner at desk" 
-              className="w-full rounded-3xl"
+              className="w-full rounded-[35px] transition-all hover:scale-105 duration-500"
             />
           </div>
           
           <div 
             ref={textRef}
-            className={`overwhelmed-text flex-grow bg-yellow-300 p-12 rounded-3xl hover-lift fade-in-right ${textVisible ? 'visible' : ''}`}
+            className={`flex-grow bg-[#d4b66a] p-12 rounded-[35px] transition-all duration-700 hover:-translate-y-1.5 hover:shadow-2xl ${textVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}
           >
             <h2 className="text-2xl font-bold">{translate('cta.title')}</h2>
             <h3 className="text-xl font-semibold mt-3 mb-6">{translate('cta.subtitle')}</h3>
             <p className="leading-relaxed mb-8">{translate('cta.text')}</p>
             <button 
               onClick={openBooking}
-              className="btn bg-black text-white hover:bg-gray-800 hover-lift"
+              className="group inline-flex items-center px-8 py-3 rounded-full font-bold relative overflow-hidden transition-all bg-black text-white hover:bg-gray-900 hover:-translate-y-0.5 hover:shadow-lg"
             >
               {translate('hero.cta')}
-              <span className="arrow-icon bg-white text-black">
+              <span className="w-7 h-7 bg-white text-black rounded-full flex items-center justify-center ml-4 transition-all group-hover:translate-x-1">
                 <ArrowRight size={14} />
               </span>
             </button>

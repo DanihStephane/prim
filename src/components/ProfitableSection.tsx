@@ -21,21 +21,24 @@ const ProfitableSection: React.FC = () => {
 
   return (
     <>
-      <section id="coaching" className="container">
-        <div ref={titleRef} className={`section-header-enhanced fade-in ${titleVisible ? 'visible' : ''}`}>
-          <h2>{translate('profitable.title')}</h2>
-          <p>{translate('profitable.subtitle')}</p>
+      <section id="coaching" className="max-w-[1200px] mx-auto px-5 py-24">
+        <div 
+          ref={titleRef} 
+          className={`text-center mb-20 relative after:content-[''] after:absolute after:-bottom-5 after:left-1/2 after:-translate-x-1/2 after:w-15 after:h-1 after:bg-[#00c2a9] after:rounded-full transition-all duration-700 ${titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">{translate('profitable.title')}</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">{translate('profitable.subtitle')}</p>
         </div>
         
-        <div ref={cardsRef} className="features-grid grid grid-cols-2 gap-8 mb-12">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
               <div 
                 key={index}
-                className={`feature-card p-8 border-2 border-teal-500 rounded-3xl text-center h-52 flex flex-col justify-center items-center gap-4 hover-lift stagger-item ${cardsVisible[index] ? 'visible' : ''}`}
+                className={`p-8 border-2 border-[#00c2a9] rounded-[35px] text-center min-h-[200px] flex flex-col justify-center items-center gap-4 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl ${cardsVisible[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
               >
-                <IconComponent size={32} className="text-black hover-scale" />
+                <IconComponent size={32} className="text-black transition-all hover:scale-110" />
                 <p className="text-lg font-medium max-w-xs">{translate(feature.key)}</p>
               </div>
             );
@@ -44,14 +47,14 @@ const ProfitableSection: React.FC = () => {
         
         <div 
           ref={buttonRef}
-          className={`text-center fade-in ${buttonVisible ? 'visible' : ''}`}
+          className={`text-center transition-all duration-700 ${buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
           <button 
             onClick={openBooking}
-            className="btn btn-teal hover-lift"
+            className="group inline-flex items-center px-8 py-3 rounded-full font-bold relative overflow-hidden transition-all bg-[#00c2a9] text-white hover:bg-[#00a693] hover:-translate-y-0.5 hover:shadow-lg"
           >
             {translate('hero.cta')}
-            <span className="arrow-icon">
+            <span className="w-7 h-7 bg-white text-[#00c2a9] rounded-full flex items-center justify-center ml-4 transition-all group-hover:translate-x-1">
               <ArrowRight size={14} />
             </span>
           </button>

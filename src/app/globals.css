@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  /* Atmosphere: Institutional Purity with Cinematic Depth */
+  
+  /* Color Palette & Roles */
+  --color-canvas: #F9FAFB; /* Canvas White - Primary background surface */
+  --color-surface: #FFFFFF; /* Pure Surface - Card and container fill */
+  --color-ink: #111111; /* Charcoal Ink - Primary text, Zinc-950 depth */
+  --color-muted: #71717A; /* Muted Steel - Secondary text, metadata */
+  --color-accent: #006b5f; /* Institutional Teal - Primary accent for CTAs */
+  --color-accent-container: #14b8a6;
+  --color-on-accent-container: #00423b;
+  
+  /* Layout principles */
+  --radius-xl: 2.5rem; /* Generously rounded corners */
+  
+  /* Typography Architecture */
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Manrope", sans-serif;
+
+  /* Shadcn standard variables mapping for v4 utilities */
+  --color-background: var(--color-canvas);
+  --color-foreground: var(--color-ink);
+  --color-card: var(--color-surface);
+  --color-card-foreground: var(--color-ink);
+  --color-popover: var(--color-surface);
+  --color-popover-foreground: var(--color-ink);
+  --color-primary: var(--color-accent);
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #f0f0f0;
+  --color-secondary-foreground: var(--color-ink);
+  --color-muted-foreground: var(--color-muted);
+  --color-accent-foreground: var(--color-on-accent-container);
+  --color-border: rgba(226, 232, 240, 0.5); /* Whisper Border */
+  --color-ring: var(--color-accent);
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 173 100% 21%; /* #006b5f */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 173 100% 21%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-canvas text-ink antialiased font-sans;
+    letter-spacing: -0.01em;
+  }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Antigravity Design Utilities */
+.glass {
+  @apply bg-white/10 backdrop-blur-xl border border-white/20;
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at top left, rgba(0, 107, 95, 0.05), transparent 40%),
+              radial-gradient(circle at bottom right, rgba(20, 184, 166, 0.05), transparent 40%);
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.will-change-transform {
+  will-change: transform, opacity;
+}
+
+/* Custom Text styles */
+.text-balance {
+  text-wrap: balance;
+}
+
+.tracking-tighter-caps {
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useScrollAnimation = (threshold = 0.1) => {
+export const useScrollAnimation = <T extends HTMLElement = HTMLElement>(threshold = 0.1) => {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<any>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,9 +28,9 @@ export const useScrollAnimation = (threshold = 0.1) => {
   return [ref, isVisible] as const;
 };
 
-export const useStaggeredAnimation = (itemCount: number, delay = 100) => {
+export const useStaggeredAnimation = <T extends HTMLElement = HTMLElement>(itemCount: number, delay = 100) => {
   const [visibleItems, setVisibleItems] = useState<boolean[]>(new Array(itemCount).fill(false));
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<any>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

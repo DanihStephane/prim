@@ -14,35 +14,38 @@ const StepsSection: React.FC = () => {
 
   return (
     <>
-      <section id="pricing" className="container">
-        <div ref={titleRef} className={`section-header-enhanced fade-in ${titleVisible ? 'visible' : ''}`}>
-          <h2>{translate('steps.title')}</h2>
-          <p>{translate('steps.subtitle')}</p>
+      <section id="pricing" className="max-w-[1200px] mx-auto px-5 py-24">
+        <div 
+          ref={titleRef} 
+          className={`text-center mb-20 relative after:content-[''] after:absolute after:-bottom-5 after:left-1/2 after:-translate-x-1/2 after:w-15 after:h-1 after:bg-[#00c2a9] after:rounded-full transition-all duration-700 ${titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">{translate('steps.title')}</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">{translate('steps.subtitle')}</p>
         </div>
         
-        <div className="steps-content flex items-center gap-12">
+        <div className="flex flex-col lg:flex-row items-center gap-12">
           <ul 
             ref={timelineRef}
-            className={`steps-timeline list-none relative flex-shrink-0 w-2/5 fade-in-left ${timelineVisible ? 'visible' : ''}`}
+            className={`list-none relative flex-shrink-0 w-full lg:w-2/5 transition-all duration-700 ${timelineVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}
           >
-            <div className="absolute top-4 bottom-4 left-4 w-1 bg-teal-500 rounded-full"></div>
+            <div className="absolute top-4 bottom-4 left-4 w-1 bg-[#00c2a9] rounded-full"></div>
             
-            <li className="py-5 pl-16 relative hover-lift" data-step="01">
-              <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-teal-500 text-white flex justify-center items-center font-bold hover-scale">
+            <li className="py-6 pl-16 relative transition-all duration-300 hover:translate-x-2 group">
+              <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-[#00c2a9] text-white flex justify-center items-center font-bold transition-all group-hover:scale-110">
                 01
               </div>
               <span className="text-xl font-semibold">{translate('steps.step1.title')}</span>
             </li>
             
-            <li className="py-5 pl-16 relative hover-lift" data-step="02">
-              <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-teal-500 text-white flex justify-center items-center font-bold hover-scale">
+            <li className="py-6 pl-16 relative transition-all duration-300 hover:translate-x-2 group">
+              <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-[#00c2a9] text-white flex justify-center items-center font-bold transition-all group-hover:scale-110">
                 02
               </div>
               <span className="text-xl font-semibold">{translate('steps.step2.title')}</span>
             </li>
             
-            <li className="py-5 pl-16 relative hover-lift" data-step="03">
-              <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-teal-500 text-white flex justify-center items-center font-bold hover-scale">
+            <li className="py-6 pl-16 relative transition-all duration-300 hover:translate-x-2 group">
+              <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-[#00c2a9] text-white flex justify-center items-center font-bold transition-all group-hover:scale-110">
                 03
               </div>
               <span className="text-xl font-semibold">{translate('steps.step3.title')}</span>
@@ -51,15 +54,15 @@ const StepsSection: React.FC = () => {
           
           <div 
             ref={boxRef}
-            className={`step-description-box bg-black text-white p-12 rounded-3xl flex-grow border-r-8 border-teal-500 hover-lift fade-in-right ${boxVisible ? 'visible' : ''}`}
+            className={`bg-black text-white p-12 rounded-[35px] flex-grow border-r-[10px] border-[#00c2a9] transition-all duration-700 hover:-translate-y-1.5 hover:shadow-2xl ${boxVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}
           >
-            <h3 className="text-4xl mb-8 leading-tight">{translate('steps.cta.title')}</h3>
+            <h3 className="text-4xl mb-8 leading-tight font-bold">{translate('steps.cta.title')}</h3>
             <button 
               onClick={openBooking}
-              className="btn btn-teal hover-scale"
+              className="group inline-flex items-center px-8 py-3 rounded-full font-bold relative overflow-hidden transition-all bg-[#00c2a9] text-white hover:bg-[#00a693] hover:-translate-y-0.5 hover:shadow-lg"
             >
               {translate('hero.cta')}
-              <span className="arrow-icon">
+              <span className="w-7 h-7 bg-white text-[#00c2a9] rounded-full flex items-center justify-center ml-4 transition-all group-hover:translate-x-1">
                 <ArrowRight size={14} />
               </span>
             </button>
