@@ -6,8 +6,22 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 
 export const metadata: Metadata = {
-  title: "Primices International",
-  description: "Primices International Website",
+  title: {
+    default: "Primices International",
+    template: "%s | Primices International"
+  },
+  description: "Global strategic holding dedicated to excellence, innovation, and sustainable impact through interconnected ecosystems.",
+  metadataBase: new URL("https://primices-international.com"),
+  alternates: {
+    languages: {
+      'en': '/en',
+      'fr': '/fr',
+    },
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  }
 };
 
 export default async function LocaleLayout({
@@ -19,19 +33,44 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  // Ensure that the incoming `locale` is valid
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }
 
-  // Providing all messages to the client
-  // side is the easiest way to get started
   const messages = await getMessages();
 
-  return (
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Primices International",
+    "url": "https://primices-international.com",
+    "logo": "https://primices-international.com/images/logo/logo-bg.png",
+    "description": "Holding stratégique globale dédiée à l'excellence, l'innovation et l'impact durable.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ottawa",
+      "addressCountry": "Canada"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/primices-international",
+      "https://twitter.com/primices_int",
+      "https://www.instagram.com/primices_international"
+    ]
+  };
 
-    <NextIntlClientProvider messages={messages}>
-      {children}
-    </NextIntlClientProvider>
+  return (
+    <html lang={locale}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }

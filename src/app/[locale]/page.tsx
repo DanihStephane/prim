@@ -1,4 +1,3 @@
-"use client";
 
 import Navbar from "@/components/landing/Navbar";
 import HeroSection from "@/components/landing/HeroSection";
@@ -10,7 +9,28 @@ import VisionSection from "@/components/landing/VisionSection";
 import CTASection from "@/components/landing/CTASection";
 import Footer from "@/components/landing/Footer";
 import EcosystemsSection from "@/components/landing/EcosystemsSection";
+import { getTranslations } from 'next-intl/server';
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Hero' });
+
+  return {
+    title: t('tagline'),
+    description: t('description'),
+    openGraph: {
+      title: `Primices International - ${t('tagline')}`,
+      description: t('description'),
+      images: ['/images/hero/global-ecosystem.png'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `Primices International - ${t('tagline')}`,
+      description: t('description'),
+      images: ['/images/hero/global-ecosystem.png'],
+    },
+  };
+}
 
 export default function Home() {
   return (
