@@ -27,12 +27,12 @@ export default function EcosystemsSection() {
   const t = useTranslations('Ecosystems');
 
   const ecosystemItems = [
-    { id: "01", key: "mice", color: "bg-blue-500/10 text-blue-500", image: "/images/ecosystem/mice.png", logo: "/images/logo/logo-bg.png" },
-    { id: "02", key: "fair", color: "bg-purple-500/10 text-purple-500", image: "/images/ecosystem/fair.png", logo: "/images/ecosystem/logo/fair-brand.png" },
-    { id: "03", key: "ingredients", color: "bg-green-500/10 text-green-500", image: "/images/ecosystem/foods.png", logo: "/images/logo/logo-bg.png" },
-    { id: "04", key: "investment", color: "bg-amber-500/10 text-amber-500", image: "/images/ecosystem/investment.jpg", logo: "/images/logo/logo-bg.png" },
-    { id: "05", key: "institute", color: "bg-red-500/10 text-red-500", image: "/images/ecosystem/edtech.png", logo: "/images/logo/logo-bg.png" },
-    { id: "06", key: "intelligence", color: "bg-cyan-500/10 text-cyan-500", image: "/images/ecosystem/prime.jpg", logo: "/images/ecosystem/logo/pi.png" }
+    { id: "01", key: "mice", color: "bg-blue-500/10 text-blue-500", image: "/images/ecosystem/mice.png", logo: "/images/logo/logo-bg.png", href: "#" },
+    { id: "02", key: "fair", color: "bg-purple-500/10 text-purple-500", image: "/images/ecosystem/fair.png", logo: "/images/ecosystem/logo/fair-brand.png", href: "https://www.fair-brand.com/" },
+    { id: "03", key: "ingredients", color: "bg-green-500/10 text-green-500", image: "/images/ecosystem/foods.png", logo: "/images/logo/logo-bg.png", href: "#" },
+    { id: "04", key: "investment", color: "bg-amber-500/10 text-amber-500", image: "/images/ecosystem/investment.jpg", logo: "/images/logo/logo-bg.png", href: "#" },
+    { id: "05", key: "institute", color: "bg-red-500/10 text-red-500", image: "/images/ecosystem/edtech.png", logo: "/images/logo/logo-bg.png", href: "#" },
+    { id: "06", key: "intelligence", color: "bg-cyan-500/10 text-cyan-500", image: "/images/ecosystem/prime.jpg", logo: "/images/ecosystem/logo/pi.png", href: "https://www.primices-intelligence.com/" }
   ];
 
   return (
@@ -74,7 +74,8 @@ export default function EcosystemsSection() {
                   y: -8,
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
-                className="group h-full"
+                className={`group h-full ${item.href !== "#" ? "cursor-pointer" : ""}`}
+                onClick={() => item.href !== "#" && window.open(item.href, "_blank")}
               >
                 <Card
                   className="h-full border-slate-100 bg-white shadow-sm hover:shadow-xl hover:border-blue-100 transition-all duration-500 flex flex-col rounded-4xl overflow-hidden"
@@ -109,12 +110,12 @@ export default function EcosystemsSection() {
                         <h3 className="text-xl font-black text-slate-900 tracking-tight uppercase group-hover:text-accent transition-colors">{title}</h3>
                       </div>
                       <div className="bg-white rounded-lg p-2">
-                        <Image 
-                          src={item.logo} 
-                          alt={title} 
-                          width={item.id === "02" ? 80 : 40} 
-                          height={item.id === "02" ? 80 : 40} 
-                          className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110" 
+                        <Image
+                          src={item.logo}
+                          alt={title}
+                          width={item.id === "02" ? 80 : 40}
+                          height={item.id === "02" ? 80 : 40}
+                          className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
                         />
                       </div>
                     </div>
