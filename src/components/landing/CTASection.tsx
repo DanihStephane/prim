@@ -5,11 +5,14 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageSquare } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 gsap.registerPlugin(useGSAP);
 
+import { useTranslations } from 'next-intl';
+
 export default function CTASection() {
+  const t = useTranslations('CTA');
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -33,23 +36,23 @@ export default function CTASection() {
 
           <div className="relative z-10 space-y-12">
             <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight max-w-4xl mx-auto">
-              Prêt à passer au niveau supérieur ?
+              {t('title')}
             </h2>
             <p className="text-xl md:text-2xl text-white/60 font-medium max-w-2xl mx-auto leading-relaxed">
-              Accédez à un écosystème conçu pour accélérer votre croissance, élargir votre réseau et structurer votre succès sur le long terme.
+              {t('description')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Button asChild size="lg" className="h-16 px-10 text-lg font-bold rounded-full bg-accent hover:bg-accent/90 text-white group shadow-[0_20px_40px_rgba(0,107,95,0.3)]">
                 <Link href="/contact">
-                  Rejoindre Primices
+                  {t('join')}
                   <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-16 px-10 text-lg font-bold rounded-full border-accent text-white hover:bg-white/10 hover:text-white/80 group bg-transparent">
                 <Link href="/contact">
                   <MessageSquare className="mr-2 w-6 h-6 opacity-60" />
-                  Demander une consultation
+                  {t('consultation')}
                 </Link>
               </Button>
             </div>

@@ -22,8 +22,13 @@ const BENEFITS = [
   "Une vie équilibrée axée sur l'innovation et la rentabilité"
 ];
 
+import { useTranslations } from 'next-intl';
+
 export default function PositioningSection() {
+  const t = useTranslations('Positioning');
   const container = useRef<HTMLDivElement>(null);
+  
+  const benefits = t.raw('benefits') as string[];
 
   useGSAP(() => {
     // Force a refresh to account for layout shifts from previous sections (like Hero images)
@@ -58,27 +63,26 @@ export default function PositioningSection() {
   }, { scope: container });
 
   return (
-    <section ref={container} className="py-32 bg-white relative overflow-hidden">
+    <section ref={container} className="py-32 bg-white relative overflow-hidden" id="positioning">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="pos-text">
-            <h4 className="text-accent font-bold text-sm tracking-[0.2em] uppercase mb-6">Positionnement</h4>
+            <h4 className="text-accent font-bold text-sm tracking-[0.2em] uppercase mb-6">{t('label')}</h4>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-ink mb-8 leading-tight">
-              Un partenaire stratégique pour les leaders d’aujourd’hui et de demain
+              {t('title')}
             </h2>
             <div className="space-y-6 max-w-xl">
               <p className="text-xl text-muted font-medium">
-                Dans un monde où tout s’accélère, la performance ne suffit plus.
-                Il faut de la vision, de la structure et un environnement capable de soutenir une croissance durable.
+                {t('p1')} {t('p2')}
               </p>
               <p className="text-lg text-muted">
-                Primices International accompagne entrepreneurs, dirigeants et talents à fort potentiel à :
+                {t('p3')}
               </p>
             </div>
           </div>
 
           <div className="pos-grid grid grid-cols-1 gap-4 -mt-4">
-            {BENEFITS.map((benefit, index) => (
+            {benefits.map((benefit, index) => (
               <Card key={index} className="pos-card p-6 border-ink/5 bg-canvas/50 backdrop-blur hover:border-accent/20 transition-all group cursor-default">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors px-2">

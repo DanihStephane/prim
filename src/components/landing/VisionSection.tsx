@@ -7,7 +7,10 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+import { useTranslations } from 'next-intl';
+
 export default function VisionSection() {
+  const t = useTranslations('Vision');
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -24,14 +27,14 @@ export default function VisionSection() {
   }, { scope: container });
 
   return (
-    <section ref={container} className="py-48 bg-white flex items-center justify-center text-center px-6">
+    <section ref={container} className="py-48 bg-white flex items-center justify-center text-center px-6" id="vision">
       <div className="max-w-5xl">
-        <h4 className="text-accent font-bold text-sm tracking-[0.2em] uppercase mb-12 vision-line">Notre Vision</h4>
+        <h4 className="text-accent font-bold text-sm tracking-[0.2em] uppercase mb-12 vision-line">{t('label')}</h4>
         <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-ink leading-[1.1] tracking-tighter mb-12 vision-line">
-          Créer des leaders, connecter des opportunités, construire l’avenir
+          {t('title')}
         </h2>
         <p className="text-xl md:text-3xl text-muted font-medium max-w-3xl mx-auto leading-relaxed vision-line">
-          Nous croyons en un monde où la croissance économique s’aligne avec le développement humain et l’innovation technologique.
+          {t('description')}
         </p>
       </div>
     </section>

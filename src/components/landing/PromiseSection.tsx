@@ -7,7 +7,10 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+import { useTranslations } from 'next-intl';
+
 export default function PromiseSection() {
+  const t = useTranslations('Promise');
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -39,19 +42,19 @@ export default function PromiseSection() {
   return (
     <section ref={container} className="relative py-48 bg-ink flex items-center justify-center overflow-hidden">
       <div className="promise-bg absolute inset-0 text-white/5 font-black text-[20vw] leading-none flex items-center justify-center whitespace-nowrap select-none pointer-events-none">
-        PROMISE
+        {t('bg_label')}
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
         <div className="promise-text space-y-12">
           <h2 className="text-4xl md:text-6xl lg:text-8xl font-black text-white leading-tight tracking-tighter">
-            Vous avancez vite.<br />
-            <span className="text-accent">Nous vous aidons à aller loin.</span>
+            {t('line1')}<br />
+            <span className="text-accent">{t('line2')}</span>
           </h2>
 
           <div className="max-w-2xl mx-auto">
             <p className="text-xl md:text-3xl text-white/60 font-medium leading-relaxed italic">
-              "Nous créons un cadre où ambition et équilibre coexistent. Un espace où vos projets, votre réseau et votre évolution personnelle sont alignés."
+              "{t('quote')}"
             </p>
           </div>
         </div>

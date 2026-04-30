@@ -5,11 +5,14 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronRight, Sparkles } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 gsap.registerPlugin(useGSAP);
 
+import { useTranslations } from 'next-intl';
+
 export default function HeroSection() {
+  const t = useTranslations('Hero');
   const container = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
@@ -83,19 +86,25 @@ export default function HeroSection() {
       className="relative min-h-dvh w-full flex flex-col justify-center items-center px-6 overflow-hidden bg-canvas text-ink"
     >
       {/* Background Building Image - Subtle Institutional Depth */}
-      <div 
+      <div
         className="absolute inset-0 z-0 opacity-[0.07] grayscale parallax-bg pointer-events-none"
-        style={{ 
+        style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           mixBlendMode: 'multiply'
-        }} 
+        }}
       />
 
       {/* Grille futuriste */}
       <div className="absolute inset-0 z-0 opacity-[0.15] bg-grid parallax-bg"
-        style={{ backgroundImage: `radial-gradient(circle, #fff 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
+        style={{ 
+          backgroundImage: `radial-gradient(circle, #fff 1px, transparent 1px)`, 
+          backgroundSize: '40px 40px',
+          WebkitMaskImage: 'radial-gradient(circle at center, black, transparent 80%)',
+          maskImage: 'radial-gradient(circle at center, black, transparent 80%)'
+        }} 
+      />
 
       {/* Halos lumineux dynamiques */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-accent/20 blur-[120px] rounded-full animate-pulse" />
@@ -108,35 +117,34 @@ export default function HeroSection() {
         <div className="text-left space-y-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-ink/10 bg-ink/5 backdrop-blur-sm text-sm font-medium hero-description">
             <Sparkles className="w-4 h-4 text-accent" />
-            <span className="opacity-80 uppercase tracking-widest text-[10px]">L'avenir du leadership</span>
+            <span className="opacity-80 uppercase tracking-widest text-[10px]">{t('tagline')}</span>
           </div>
 
           <h1 className="hero-title text-5xl md:text-7xl font-black tracking-tight leading-[0.95]">
             <span className="block overflow-hidden">
-              <span className="block">Nous formons</span>
+              <span className="block">{t('line1')}</span>
             </span>
             <span className="block overflow-hidden text-accent">
-              <span className="block italic">des leaders.</span>
+              <span className="block italic">{t('line2')}</span>
             </span>
             <span className="block overflow-hidden mt-8">
-              <span className="block">Amplifions l'</span>
+              <span className="block">{t('line3')}</span>
             </span>
             <span className="block overflow-hidden  text-accent">
-              <span className="block italic">impact.</span>
+              <span className="block italic">{t('line4')}</span>
             </span>
           </h1>
 
           <p className="hero-description text-lg md:text-xl text-muted max-w-xl font-light leading-relaxed">
-            Prenez le contrôle de votre parcours dans un écosystème conçu pour la performance durable et l'impact technologique.
+            {t('description')}
           </p>
 
           <div className="flex flex-wrap gap-4 hero-btns">
-            <Button size="lg" className="h-16 px-10 text-base font-bold rounded-xl bg-accent hover:bg-accent/90 shadow-[0_0_20px_rgba(var(--accent),0.3)] transition-all">
-              Démarrer l'expérience
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Button variant="outline" size="lg" className="h-16 px-10 text-base font-bold rounded-xl border-ink/10 bg-white/5 backdrop-blur-md hover:bg-white/10">
-              Explorer
+            <Button size="lg" className="h-16 px-10 text-base font-bold rounded-xl bg-accent hover:bg-accent/90 shadow-[0_0_20px_rgba(var(--accent),0.3)] transition-all" asChild>
+              <Link href="/contact">
+                {t('cta')}
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
             </Button>
           </div>
         </div>
@@ -153,7 +161,7 @@ export default function HeroSection() {
               alt="Global Ecosystem Primices"
             />
             <div className="absolute bottom-6 left-4 right-4 p-4 rounded-xl bg-black/40 backdrop-blur-md border border-white/10">
-              <p className="text-white text-xs font-bold uppercase tracking-widest">06 Ecosystèmes</p>
+              <p className="text-white text-xs font-bold uppercase tracking-widest">{t('ecosystems_count')}</p>
               <div className="h-1 w-full bg-accent mt-2 origin-left scale-x-50" />
             </div>
           </div>
@@ -164,7 +172,7 @@ export default function HeroSection() {
           </div>
 
           <div className="absolute bottom-0 -left-10 w-56 h-32 bg-accent/90 rounded-2xl floating-media hero-float z-30 flex items-center justify-center p-6 shadow-[0_20px_40px_rgba(0,0,0,0.3)]" style={{ animationDelay: '0.5s' }}>
-            <span className="text-white font-black text-2xl tracking-tighter italic">IMPACT+</span>
+            <span className="text-white font-black text-2xl tracking-tighter italic">{t('impact_label')}</span>
           </div>
 
           {/* Abstract geometric shapes */}
@@ -174,19 +182,10 @@ export default function HeroSection() {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-[10px] uppercase tracking-[0.3em] opacity-40">Scroll</span>
+        <span className="text-[10px] uppercase tracking-[0.3em] opacity-40">{t('scroll')}</span>
         <div className="w-px h-12 bg-linear-to-b from-accent to-transparent" />
       </div>
 
-      <style jsx>{`
-        .outline-text {
-          -webkit-text-stroke: 1px currentColor;
-          color: transparent;
-        }
-        .bg-grid {
-          mask-image: radial-gradient(circle at center, black, transparent 80%);
-        }
-      `}</style>
     </section>
   );
 }
