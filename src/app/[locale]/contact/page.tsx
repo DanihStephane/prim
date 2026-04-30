@@ -33,7 +33,11 @@ const SOCIAL_ICONS = {
   )
 };
 
+import { useTranslations } from 'next-intl';
+
 export default function ContactPage() {
+  const t = useTranslations('Contact');
+  
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -66,13 +70,13 @@ export default function ContactPage() {
             transition={{ duration: 1 }}
             className="mb-20"
           >
-            <h4 className="text-accent font-bold text-xs tracking-[0.2em] uppercase mb-4">Contactez-nous</h4>
+            <h4 className="text-accent font-bold text-xs tracking-[0.2em] uppercase mb-4">{t('label')}</h4>
             <h1 className="text-5xl md:text-7xl font-black text-ink tracking-tighter leading-none mb-8">
-              Collaborons sur <br />
-              votre prochain <span className="text-accent">impact</span>.
+              {t('line1')} <br />
+              {t('line2')} <span className="text-accent">{t('impact')}</span>.
             </h1>
             <p className="text-xl text-muted font-medium max-w-2xl leading-relaxed">
-              Que vous soyez un dirigeant cherchant à structurer sa croissance ou un talent prêt à décoller, notre écosystème est prêt à vous accueillir.
+              {t('description')}
             </p>
           </motion.div>
 
@@ -85,9 +89,9 @@ export default function ContactPage() {
               className="lg:col-span-5 space-y-8"
             >
               {[
-                { icon: Mail, label: "Email", value: "contact@primices-international.com", href: "mailto:contact@primices-international.com" },
-                { icon: Phone, label: "Téléphone", value: "+237 6XX XXX XXX", href: "tel:+237600000000" },
-                { icon: MapPin, label: "Bureau", value: "Douala, Cameroun / Paris, France", href: "#" }
+                { icon: Mail, label: t('email_label'), value: "contact@primices-intl.com", href: "mailto:contact@primices-intl.com" },
+                { icon: Phone, label: t('phone_label'), value: "+237 6XX XXX XXX", href: "tel:+237600000000" },
+                { icon: MapPin, label: t('office_label'), value: "Douala, Cameroun / Paris, France", href: "#" }
               ].map((info, i) => (
                 <motion.a
                   key={i}
@@ -107,7 +111,7 @@ export default function ContactPage() {
               ))}
 
               <motion.div variants={itemVariants} className="pt-8">
-                <p className="text-sm font-bold text-ink uppercase tracking-widest mb-6">Suivez notre écosystème</p>
+                <p className="text-sm font-bold text-ink uppercase tracking-widest mb-6">{t('follow')}</p>
                 <div className="flex gap-4">
                   {[SOCIAL_ICONS.Linkedin, SOCIAL_ICONS.Instagram, SOCIAL_ICONS.Twitter].map((Icon, i) => (
                     <motion.button
@@ -135,7 +139,7 @@ export default function ContactPage() {
                 <form className="space-y-8 relative z-10" onSubmit={(e) => e.preventDefault()}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-3">
-                      <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">Nom complet</label>
+                      <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">{t('form.name_label')}</label>
                       <input
                         type="text"
                         placeholder="John Doe"
@@ -143,7 +147,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div className="space-y-3">
-                      <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">Email</label>
+                      <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">{t('form.email_label')}</label>
                       <input
                         type="email"
                         placeholder="john@example.com"
@@ -153,26 +157,26 @@ export default function ContactPage() {
                   </div>
 
                   <div className="space-y-3">
-                    <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">Sujet de votre démarche</label>
+                    <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">{t('form.subject_label')}</label>
                     <select className="w-full h-14 px-6 rounded-2xl bg-canvas border-transparent focus:bg-white focus:border-accent/30 focus:ring-0 transition-all font-medium text-ink outline-none appearance-none">
-                      <option>Rejoindre un écosystème</option>
-                      <option>Coaching & Leadership</option>
-                      <option>Investissement stratégique</option>
-                      <option>Autre demande</option>
+                      <option>{t('form.subject_option1')}</option>
+                      <option>{t('form.subject_option2')}</option>
+                      <option>{t('form.subject_option3')}</option>
+                      <option>{t('form.subject_option4')}</option>
                     </select>
                   </div>
 
                   <div className="space-y-3">
-                    <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">Message</label>
+                    <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">{t('form.message_label')}</label>
                     <textarea
-                      placeholder="Comment pouvons-nous vous accompagner ?"
+                      placeholder={t('form.message_placeholder')}
                       rows={6}
                       className="w-full px-6 py-5 rounded-2xl bg-canvas border-transparent focus:bg-white focus:border-accent/30 focus:ring-0 transition-all font-medium text-ink outline-none resize-none"
                     />
                   </div>
 
                   <Button size="lg" className="w-full h-16 rounded-2xl bg-accent hover:bg-accent/90 text-white font-bold text-lg group shadow-lg shadow-accent/20">
-                    Envoyer le message
+                    {t('form.submit')}
                     <Send className="ml-3 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </Button>
                 </form>
