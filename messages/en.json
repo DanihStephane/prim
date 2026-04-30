@@ -162,6 +162,7 @@
       "name_label": "Full Name",
       "email_label": "Email",
       "default": "Select a topic",
+      "subject_label": "Subject of your request",
       "subject_option1": "Join an ecosystem",
       "subject_option2": "Coaching & Leadership",
       "subject_option3": "Strategic Investment",
