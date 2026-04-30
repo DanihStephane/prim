@@ -37,7 +37,7 @@ import { useTranslations } from 'next-intl';
 
 export default function ContactPage() {
   const t = useTranslations('Contact');
-  
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -89,9 +89,9 @@ export default function ContactPage() {
               className="lg:col-span-5 space-y-8"
             >
               {[
-                { icon: Mail, label: t('email_label'), value: "contact@primices-intl.com", href: "mailto:contact@primices-intl.com" },
-                { icon: Phone, label: t('phone_label'), value: "+237 6XX XXX XXX", href: "tel:+237600000000" },
-                { icon: MapPin, label: t('office_label'), value: "Douala, Cameroun / Paris, France", href: "#" }
+                { icon: Mail, label: t('email_label'), value: "rodolpho.r@primices-international.com", href: "mailto:rodolpho.r@primices-international.com" },
+                { icon: Phone, label: t('phone_label'), value: "+1 (613) 454-5286", href: "tel:+16134545286" },
+                { icon: MapPin, label: t('office_label'), value: "Ottawa, Canada", href: "#" }
               ].map((info, i) => (
                 <motion.a
                   key={i}

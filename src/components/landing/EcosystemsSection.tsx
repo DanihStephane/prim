@@ -12,6 +12,7 @@ import {
 import { Card } from "../ui/card";
 
 import { useTranslations } from 'next-intl';
+import Image from "next/image";
 
 const ECOSYSTEM_ICONS = {
   mice: Briefcase,
@@ -26,12 +27,12 @@ export default function EcosystemsSection() {
   const t = useTranslations('Ecosystems');
 
   const ecosystemItems = [
-    { id: "01", key: "mice", color: "bg-blue-500/10 text-blue-500", image: "/images/ecosystem/mice.png" },
-    { id: "02", key: "fair", color: "bg-purple-500/10 text-purple-500", image: "/images/ecosystem/fair.png" },
-    { id: "03", key: "ingredients", color: "bg-green-500/10 text-green-500", image: "/images/ecosystem/foods.png" },
-    { id: "04", key: "investment", color: "bg-amber-500/10 text-amber-500", image: "/images/ecosystem/investment.jpg" },
-    { id: "05", key: "institute", color: "bg-red-500/10 text-red-500", image: "/images/ecosystem/edtech.png" },
-    { id: "06", key: "intelligence", color: "bg-cyan-500/10 text-cyan-500", image: "/images/ecosystem/prime.jpg" }
+    { id: "01", key: "mice", color: "bg-blue-500/10 text-blue-500", image: "/images/ecosystem/mice.png", logo: "/images/logo/logo-bg.png" },
+    { id: "02", key: "fair", color: "bg-purple-500/10 text-purple-500", image: "/images/ecosystem/fair.png", logo: "/images/ecosystem/logo/fair-brand.png" },
+    { id: "03", key: "ingredients", color: "bg-green-500/10 text-green-500", image: "/images/ecosystem/foods.png", logo: "/images/logo/logo-bg.png" },
+    { id: "04", key: "investment", color: "bg-amber-500/10 text-amber-500", image: "/images/ecosystem/investment.jpg", logo: "/images/logo/logo-bg.png" },
+    { id: "05", key: "institute", color: "bg-red-500/10 text-red-500", image: "/images/ecosystem/edtech.png", logo: "/images/logo/logo-bg.png" },
+    { id: "06", key: "intelligence", color: "bg-cyan-500/10 text-cyan-500", image: "/images/ecosystem/prime.jpg", logo: "/images/ecosystem/logo/pi.png" }
   ];
 
   return (
@@ -87,14 +88,14 @@ export default function EcosystemsSection() {
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                    <div className="absolute bottom-4 left-6">
+                    {/* <div className="absolute bottom-4 left-6">
                       <motion.div
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         className={`w-12 h-12 rounded-xl flex items-center justify-center ${item.color} backdrop-blur-md shadow-lg border border-white/20`}
                       >
                         <Icon className="w-6 h-6" />
                       </motion.div>
-                    </div>
+                    </div> */}
 
                     <div className="absolute top-4 right-6 text-white/50 group-hover:text-white transition-colors">
                       <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-1 -translate-y-1" />
@@ -107,6 +108,15 @@ export default function EcosystemsSection() {
                         <span className="text-[10px] font-bold text-accent/60 tracking-widest uppercase">{item.id} — Primices</span>
                         <h3 className="text-xl font-black text-slate-900 tracking-tight uppercase group-hover:text-accent transition-colors">{title}</h3>
                       </div>
+                      <div className="bg-white rounded-lg p-2">
+                        <Image 
+                          src={item.logo} 
+                          alt={title} 
+                          width={item.id === "02" ? 80 : 40} 
+                          height={item.id === "02" ? 80 : 40} 
+                          className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110" 
+                        />
+                      </div>
                     </div>
 
                     <p className="text-accent font-bold text-[11px] mb-4 uppercase tracking-wider">{subtitle}</p>
@@ -116,13 +126,13 @@ export default function EcosystemsSection() {
                     </p>
 
                     <div className="mt-auto pt-6 flex items-center gap-2 group/btn cursor-pointer">
-                      <span className="text-xs font-bold text-slate-900 uppercase tracking-wider group-hover/btn:text-blue-600 transition-colors">{t('learn_more')}</span>
-                      <div className="h-[2px] w-4 bg-slate-200 group-hover/btn:w-8 group-hover/btn:bg-blue-600 transition-all duration-300" />
+                      <span className="text-xs font-bold text-slate-900 uppercase tracking-wider group-hover/btn:text-accent transition-colors">{t('learn_more')}</span>
+                      <div className="h-[2px] w-4 bg-slate-200 group-hover/btn:w-8 group-hover/btn:bg-accent transition-all duration-300" />
                     </div>
                   </div>
 
                   <motion.div
-                    className="absolute bottom-0 left-0 h-1 bg-blue-600"
+                    className="absolute bottom-0 left-0 h-1 bg-accent"
                     initial={{ width: 0 }}
                     whileHover={{ width: "100%" }}
                     transition={{ duration: 0.4 }}

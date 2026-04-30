@@ -28,7 +28,7 @@ export default function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   return (
     <div className={`relative ${className}`} onMouseDown={(e) => e.stopPropagation()}>
       <button
-        className="flex items-center gap-1.5 px-1 py-2 rounded-full bg-white border border-[#E4E7ED] text-[#1A2532] text-sm font-medium hover:bg-[#F2F5F8] transition-colors"
+        className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-white border border-[#E4E7ED] text-[#1A2532] text-sm font-medium hover:bg-[#F2F5F8] transition-colors"
         onClick={() => setLangOpen((v) => !v)}
       >
         <Globe className="w-4 h-4" />

@@ -292,8 +292,8 @@ export default function LandingPage() {
                                 Holding d'investissement et de services premium. Nous bâtissons des ponts solides entre le potentiel africain et les standards internationaux, avec un siège fortifié par nos valeurs éthiques.
                             </p>
                             <div className="space-y-3">
-                                <a href="mailto:contact@primices-international.com" className="text-brand-gold hover:text-white transition-colors flex items-center w-fit">
-                                    <Mail size={18} className="mr-3" /> contact@primices-international.com
+                                <a href="mailto:rodolpho.r@primices-international.com" className="text-brand-gold hover:text-white transition-colors flex items-center w-fit">
+                                    <Mail size={18} className="mr-3" /> rodolpho.r@primices-international.com
                                 </a>
                                 <div className="text-gray-400 flex items-center w-fit">
                                     <MapPin size={18} className="mr-3" /> Paris • Antananarivo • International

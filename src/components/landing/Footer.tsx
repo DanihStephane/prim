@@ -23,6 +23,7 @@ const FOOTER_LINKS = {
 };
 
 import { useTranslations } from 'next-intl';
+import Image from "next/image";
 
 export default function Footer() {
   const t = useTranslations('Footer');
@@ -53,17 +54,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           <div className="space-y-8">
             <div className="flex items-center gap-3">
-              <Globe className="text-accent w-8 h-8" />
+              <Image src="/images/logo/logo-bg.png" alt="Primices" width={50} height={50} />
               <h2 className="text-xl font-black tracking-tighter uppercase">{tNav('title')}</h2>
             </div>
             <p className="text-white/40 leading-relaxed font-medium">
               {t('description')}
             </p>
             <div className="flex gap-4">
-              <Button size="icon" variant="outline" className="rounded-full border-white/10 hover:bg-white hover:text-ink transition-all">
+              <Button size="icon" variant="outline" className="rounded-full border-white/10 hover:bg-white hover:text-ink transition-all text-foreground">
                 <Share2 className="w-5 h-5" />
               </Button>
-              <Button size="icon" variant="outline" className="rounded-full border-white/10 hover:bg-white hover:text-ink transition-all">
+              <Button size="icon" variant="outline" className="rounded-full border-white/10 hover:bg-white hover:text-ink transition-all text-foreground">
                 <Languages className="w-5 h-5" />
               </Button>
             </div>
@@ -85,8 +86,8 @@ export default function Footer() {
             <ul className="space-y-4">
               {FOOTER_LINKS.corporate.map((link, i) => (
                 <li key={i}>
-                  <Link 
-                    className="text-white/40 hover:text-white transition-colors text-sm font-bold uppercase tracking-wider" 
+                  <Link
+                    className="text-white/40 hover:text-white transition-colors text-sm font-bold uppercase tracking-wider"
                     href={link === tNav('contact') ? "/contact" : "/"}
                   >
                     {link}
@@ -99,8 +100,8 @@ export default function Footer() {
           <div className="space-y-8">
             <h5 className="text-xs font-black tracking-[0.2em] uppercase text-accent mb-8">{t('inquiries')}</h5>
             <p className="text-white/40 text-sm font-medium">{t('inquiries_p')}</p>
-            <a className="text-white font-black text-2xl block hover:text-accent transition-colors tracking-tighter" href="mailto:contact@primices-intl.com">
-              contact@primices-intl.com
+            <a className="text-white font-black text-2xl block hover:text-accent transition-colors tracking-tighter" href="mailto:rodolpho.r@primices-international.com">
+              rodolpho.r@primices-international.com
             </a>
             <Button asChild className="w-full bg-accent hover:bg-accent/90 text-white font-bold h-14 rounded-full">
               <Link href="/contact">{tCTA('consultation').toUpperCase()}</Link>
