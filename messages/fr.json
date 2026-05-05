@@ -170,6 +170,7 @@
       "message_label": "Message",
       "message_placeholder": "Comment pouvons-nous vous accompagner ?",
       "submit": "Envoyer le message"
-    }
+    },
+    "consultation": "Demander une consultation"
   }
 }

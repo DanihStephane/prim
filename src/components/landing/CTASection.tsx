@@ -50,7 +50,7 @@ export default function CTASection() {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-16 px-10 text-lg font-bold rounded-full border-accent text-white hover:bg-white/10 hover:text-white/80 group bg-transparent">
-                <Link href="https://calendly.primices.com/fr" target="_blank">
+                <Link href="https://calendly.primices.com" target="_blank">
                   <MessageSquare className="mr-2 w-6 h-6 opacity-60" />
                   {t('consultation')}
                 </Link>

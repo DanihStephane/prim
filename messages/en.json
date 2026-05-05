@@ -170,6 +170,7 @@
       "message_label": "Message",
       "message_placeholder": "How can we support you?",
       "submit": "Send Message"
-    }
+    },
+    "consultation": "Request a consultation"
   }
 }

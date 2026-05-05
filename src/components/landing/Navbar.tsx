@@ -46,15 +46,15 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6 lg:gap-8">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.name}
               className="text-muted hover:text-ink font-bold text-[10px] tracking-widest uppercase transition-colors"
               href={item.href}
             >
               {item.name}
-            </a>
+            </Link>
           ))}
-          
+
           <div className="flex items-center gap-4">
             <LanguageSwitcher />
             <Button asChild variant="default" className="bg-ink text-white hover:bg-ink/90 px-6 h-10 rounded-full font-bold text-[10px] tracking-widest group">
@@ -80,7 +80,7 @@ export default function Navbar() {
             <SheetContent side="right" className="rounded-l-3xl border-l-ink/5">
               <div className="flex flex-col gap-8 mt-20">
                 {navItems.map((item) => (
-                  <a key={item.name} className="text-2xl font-black text-ink uppercase tracking-tighter" href={item.href}>{item.name}</a>
+                  <Link key={item.name} className="text-2xl font-black text-ink uppercase tracking-tighter" href={item.href}>{item.name}</Link>
                 ))}
                 <Button asChild className="w-full h-14 rounded-full bg-accent font-bold">
                   <Link href="/contact">{t('contact').toUpperCase()}</Link>

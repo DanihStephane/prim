@@ -4,8 +4,9 @@ import { useState } from "react";
 import { motion, Variants } from "motion/react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Loader2, CheckCircle2, AlertCircle, Send, Mail, Phone, MapPin } from "lucide-react";
+import { Loader2, CheckCircle2, AlertCircle, Send, Mail, Phone, MapPin, MessageSquare } from "lucide-react";
 import { useTranslations } from 'next-intl';
+import Link from "next/link";
 
 const SOCIAL_ICONS = {
   Linkedin: (props: any) => (
@@ -214,21 +215,31 @@ export default function ContactForm() {
               </motion.div>
             )}
 
-            <Button
-              disabled={isSubmitting}
-              type="submit"
-              size="lg"
-              className="w-full h-16 rounded-2xl bg-accent hover:bg-accent/90 text-white font-bold text-lg group shadow-lg shadow-accent/20 disabled:opacity-70"
-            >
-              {isSubmitting ? (
-                <Loader2 className="w-6 h-6 animate-spin" />
-              ) : (
-                <>
-                  {t('form.submit')}
-                  <Send className="ml-3 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </>
-              )}
-            </Button>
+            <div className="flex justify-center items-center gap-4 flex-wrap">
+              <Button
+                disabled={isSubmitting}
+                type="submit"
+                size="lg"
+                className=" h-16 rounded-2xl bg-accent hover:bg-accent/90 text-white font-bold text-lg group shadow-lg shadow-accent/20 disabled:opacity-70"
+              >
+                {isSubmitting ? (
+                  <Loader2 className="w-6 h-6 animate-spin" />
+                ) : (
+                  <>
+                    {t('form.submit')}
+                    <Send className="ml-3 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </>
+                )}
+              </Button>
+              <Button asChild size="lg" variant="outline" className="h-16 text-lg font-bold rounded-2xl border-accent text-accent hover:bg-accent/10 hover:text-accent group bg-transparent">
+                <Link href="https://calendly.primices.com" target="_blank">
+                  {t('consultation')}
+                  <MessageSquare className="ml-3 w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </Link>
+              </Button>
+            </div>
+
+
           </form>
         </Card>
       </motion.div>

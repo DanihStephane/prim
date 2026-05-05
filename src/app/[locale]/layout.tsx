@@ -39,38 +39,9 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Primices International",
-    "url": "https://primices-international.com",
-    "logo": "https://primices-international.com/images/logo/logo-bg.png",
-    "description": "Holding stratégique globale dédiée à l'excellence, l'innovation et l'impact durable.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Ottawa",
-      "addressCountry": "Canada"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/company/primices-international",
-      "https://twitter.com/primices_int",
-      "https://www.instagram.com/primices_international"
-    ]
-  };
-
   return (
-    <html lang={locale}>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider messages={messages}>
+      {children}
+    </NextIntlClientProvider>
   );
 }
