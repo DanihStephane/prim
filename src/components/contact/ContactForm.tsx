@@ -4,37 +4,82 @@ import { useState } from "react";
 import { motion, Variants } from "motion/react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Loader2, CheckCircle2, AlertCircle, Send, Mail, Phone, MapPin, MessageSquare } from "lucide-react";
-import { useTranslations } from 'next-intl';
+import {
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
+  Send,
+  Mail,
+  Phone,
+  MapPin,
+  MessageSquare,
+} from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useFormGuard } from "@ainamitantsoa/form-guard";
 
 const SOCIAL_ICONS = {
   Linkedin: (props: any) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
     </svg>
   ),
   Instagram: (props: any) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
     </svg>
   ),
   Twitter: (props: any) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
     </svg>
-  )
+  ),
 };
 
 export default function ContactForm() {
-  const t = useTranslations('Contact');
+  const t = useTranslations("Contact");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
-    message: ""
+    message: "",
+  });
+  const { Honeypot, guard } = useFormGuard({
+    minTime: 2500,
+    fieldName: "company_fax",
+    onBot: (reason) => {
+      setStatus("success");
+    },
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -46,7 +91,7 @@ export default function ContactForm() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
@@ -68,9 +113,9 @@ export default function ContactForm() {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.3
-      }
-    }
+        delayChildren: 0.3,
+      },
+    },
   };
 
   const itemVariants: Variants = {
@@ -78,8 +123,8 @@ export default function ContactForm() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.21, 0.45, 0.32, 0.9] }
-    }
+      transition: { duration: 0.8, ease: [0.21, 0.45, 0.32, 0.9] },
+    },
   };
 
   return (
@@ -92,9 +137,24 @@ export default function ContactForm() {
         className="lg:col-span-5 space-y-8"
       >
         {[
-          { icon: Mail, label: t('email_label'), value: "welcome-home@primices-international.com", href: "mailto:welcome-home@primices-international.com" },
-          { icon: Phone, label: t('phone_label'), value: "+1 (613) 454-5286", href: "tel:+16134545286" },
-          { icon: MapPin, label: t('office_label'), value: "Ottawa, Canada", href: "#" }
+          {
+            icon: Mail,
+            label: t("email_label"),
+            value: "welcome-home@primices-international.com",
+            href: "mailto:welcome-home@primices-international.com",
+          },
+          {
+            icon: Phone,
+            label: t("phone_label"),
+            value: "+1 (613) 454-5286",
+            href: "tel:+16134545286",
+          },
+          {
+            icon: MapPin,
+            label: t("office_label"),
+            value: "Ottawa, Canada",
+            href: "#",
+          },
         ].map((info, i) => (
           <motion.a
             key={i}
@@ -107,16 +167,26 @@ export default function ContactForm() {
               <info.icon className="w-6 h-6" />
             </div>
             <div>
-              <p className="text-[10px] font-bold text-muted uppercase tracking-widest mb-1">{info.label}</p>
-              <p className="text-md font-bold text-ink whitespace-nowrap">{info.value}</p>
+              <p className="text-[10px] font-bold text-muted uppercase tracking-widest mb-1">
+                {info.label}
+              </p>
+              <p className="text-md font-bold text-ink whitespace-nowrap">
+                {info.value}
+              </p>
             </div>
           </motion.a>
         ))}
 
         <motion.div variants={itemVariants} className="pt-8">
-          <p className="text-sm font-bold text-ink uppercase tracking-widest mb-6">{t('follow')}</p>
+          <p className="text-sm font-bold text-ink uppercase tracking-widest mb-6">
+            {t("follow")}
+          </p>
           <div className="flex gap-4">
-            {[SOCIAL_ICONS.Linkedin, SOCIAL_ICONS.Instagram, SOCIAL_ICONS.Twitter].map((Icon, i) => (
+            {[
+              SOCIAL_ICONS.Linkedin,
+              SOCIAL_ICONS.Instagram,
+              SOCIAL_ICONS.Twitter,
+            ].map((Icon, i) => (
               <motion.button
                 key={i}
                 whileHover={{ y: -5, scale: 1.1 }}
@@ -139,56 +209,84 @@ export default function ContactForm() {
         <Card className="p-10 md:p-16 border-ink/5 bg-white shadow-xl rounded-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-3xl -mr-16 -mt-16" />
 
-          <form className="space-y-8 relative z-10" onSubmit={handleSubmit}>
+          <form
+            className="space-y-8 relative z-10"
+            onSubmit={guard(handleSubmit)}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-3">
-                <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">{t('form.name_label')}</label>
+                <Honeypot />
+                <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">
+                  {t("form.name_label")}
+                </label>
                 <input
                   required
                   type="text"
                   placeholder="John Doe"
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   className="w-full h-14 px-6 rounded-2xl bg-canvas border-transparent focus:bg-white focus:border-accent/30 focus:ring-0 transition-all font-medium text-ink outline-none"
                 />
               </div>
               <div className="space-y-3">
-                <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">{t('form.email_label')}</label>
+                <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">
+                  {t("form.email_label")}
+                </label>
                 <input
                   required
                   type="email"
                   placeholder="john@example.com"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   className="w-full h-14 px-6 rounded-2xl bg-canvas border-transparent focus:bg-white focus:border-accent/30 focus:ring-0 transition-all font-medium text-ink outline-none"
                 />
               </div>
             </div>
 
             <div className="space-y-3">
-              <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">{t('form.subject_label')}</label>
+              <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">
+                {t("form.subject_label")}
+              </label>
               <select
                 required
                 value={formData.subject}
-                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, subject: e.target.value })
+                }
                 className="w-full h-14 px-6 rounded-2xl bg-canvas border-transparent focus:bg-white focus:border-accent/30 focus:ring-0 transition-all font-medium text-ink outline-none appearance-none"
               >
-                <option value="" disabled>{t('form.default')}</option>
-                <option value="Réjoindre l'écosystème">{t('form.subject_option1')}</option>
-                <option value="Coaching et Leadership">{t('form.subject_option2')}</option>
-                <option value="Investissement">{t('form.subject_option3')}</option>
-                <option value="Autre">{t('form.subject_option4')}</option>
+                <option value="" disabled>
+                  {t("form.default")}
+                </option>
+                <option value="Réjoindre l'écosystème">
+                  {t("form.subject_option1")}
+                </option>
+                <option value="Coaching et Leadership">
+                  {t("form.subject_option2")}
+                </option>
+                <option value="Investissement">
+                  {t("form.subject_option3")}
+                </option>
+                <option value="Autre">{t("form.subject_option4")}</option>
               </select>
             </div>
 
             <div className="space-y-3">
-              <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">{t('form.message_label')}</label>
+              <label className="text-xs font-bold text-ink uppercase tracking-widest ml-1">
+                {t("form.message_label")}
+              </label>
               <textarea
                 required
-                placeholder={t('form.message_placeholder')}
+                placeholder={t("form.message_placeholder")}
                 rows={6}
                 value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
                 className="w-full px-6 py-5 rounded-2xl bg-canvas border-transparent focus:bg-white focus:border-accent/30 focus:ring-0 transition-all font-medium text-ink outline-none resize-none"
               />
             </div>
@@ -200,7 +298,9 @@ export default function ContactForm() {
                 className="p-4 rounded-2xl bg-green-50 border border-green-100 text-green-700 flex items-center gap-3"
               >
                 <CheckCircle2 className="w-5 h-5" />
-                <p className="text-sm font-bold">Message envoyé avec succès !</p>
+                <p className="text-sm font-bold">
+                  Message envoyé avec succès !
+                </p>
               </motion.div>
             )}
 
@@ -211,7 +311,9 @@ export default function ContactForm() {
                 className="p-4 rounded-2xl bg-red-50 border border-red-100 text-red-700 flex items-center gap-3"
               >
                 <AlertCircle className="w-5 h-5" />
-                <p className="text-sm font-bold">Erreur lors de l'envoi. Veuillez réessayer.</p>
+                <p className="text-sm font-bold">
+                  Erreur lors de l'envoi. Veuillez réessayer.
+                </p>
               </motion.div>
             )}
 
@@ -226,20 +328,23 @@ export default function ContactForm() {
                   <Loader2 className="w-6 h-6 animate-spin" />
                 ) : (
                   <>
-                    {t('form.submit')}
+                    {t("form.submit")}
                     <Send className="ml-3 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </>
                 )}
               </Button>
-              <Button asChild size="lg" variant="outline" className="h-16 text-lg font-bold rounded-2xl border-accent text-accent hover:bg-accent/10 hover:text-accent group bg-transparent">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="h-16 text-lg font-bold rounded-2xl border-accent text-accent hover:bg-accent/10 hover:text-accent group bg-transparent"
+              >
                 <Link href="https://calendly.primices.com" target="_blank">
-                  {t('consultation')}
+                  {t("consultation")}
                   <MessageSquare className="ml-3 w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </Link>
               </Button>
             </div>
-
-
           </form>
         </Card>
       </motion.div>
